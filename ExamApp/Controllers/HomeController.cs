@@ -19,23 +19,45 @@ namespace ExamApp.Controllers
             this.carService = carService;
         }
 
-        [Route("search")]
-        // GET: /<controller>/
+        [Route("")]
         public IActionResult Index()
         {
             return View();
         }
 
-        [Route("search/police=1")]
-        public IActionResult Police()
+        [HttpPost]
+        [Route("search/")]
+        public IActionResult GetByPlate([FromForm]string plate)
         {
-            return View(carService.GetPoliceCars());
+            return View("Index", carService.GetByPlate(plate));
         }
 
+        [HttpGet]
+        [Route("search/{brand}")]
+        public IActionResult FilterByBrand(string brand)
+        {
+            return View("Index", carService.FilterByBrand(brand));
+        }
+
+        [HttpGet]
+        [Route("search/police=1")]
+        public IActionResult GetPoliceCars()
+        {
+            return View("Index", carService.GetPoliceCars());
+        }
+
+        [HttpGet]
         [Route("search/diplomat=1")]
         public IActionResult Diplomat()
         {
-            return View(carService.GetDiplomatCars());
+            return View("Index", carService.GetDiplomatCars());
+        }
+
+        [HttpGet]
+        [Route("/api/search/{brand}")]
+        public IActionResult Json(string brand)
+        {
+            return Json(carService.FilterByBrand(brand));
         }
     }
 }

@@ -22,12 +22,12 @@ namespace ExamApp.Repositories
 
         public ICollection<Car> GetByPlate(string plateNumber)
         {
-            return carContext.licence_plates.Where(c => c.Plate.Contains(plateNumber)).ToList();
+            return carContext.licence_plates.Where(c => c.Plate.ToLower().Contains(plateNumber.ToLower())).ToList();
         }
 
         public ICollection<Car> ListByBrand(string brand)
         {
-            return carContext.licence_plates.Where(c => c.Car_brand == brand).ToList();
+            return carContext.licence_plates.Where(c => c.Car_brand.ToLower() == brand.ToLower()).ToList();
         }
     }
 }

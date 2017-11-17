@@ -1,4 +1,45 @@
-﻿<html xmlns="http://www.w3.org/1999/xhtml">
+﻿@model ICollection<ExamApp.Models.Car>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head><title></title></head>
-  <body><h1>hi</h1></body>
+  <body>
+
+	<form action="/search" method="post">
+     <input type="text" name="Plate" placeholder="ABC-012">
+	 <input type="submit" value="search">
+	</form>
+ 
+	   
+        @if (@Model != null)
+        {
+          <table>
+          <thead>
+          <tr>
+            <th>Licence Plate</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Color</th>
+            <th>Year</th>
+           </tr>
+           </thead>
+           <tbody>
+             @foreach (var car in Model)
+             {
+             <tr>
+              <td>@car.Plate</td>
+              <td><a href="/search/@car.Car_brand">@car.Car_brand</a></td>
+              <td>@car.Car_model</td>
+              <td>@car.Color</td>
+              <td>@car.Year</td>
+             </tr>
+              }
+            </tbody>
+            </table>
+        
+    }
+        
+
+
+     
+  </body>
 </html>

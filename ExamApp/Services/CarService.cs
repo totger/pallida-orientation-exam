@@ -27,13 +27,17 @@ namespace ExamApp.Services
 
         public ICollection<Car> GetPoliceCars()
         {
-            //return repo.GetByPlate("RB");
-            return repo.GetAllCars().Where(p => p.Plate.StartsWith("RB")).ToList();
+            return repo.GetAllCars().Where(c => c.Plate.StartsWith("RB")).ToList();
         }
 
         public ICollection<Car> GetDiplomatCars()
         {
-            return repo.GetAllCars().Where(p => p.Plate.StartsWith("DT")).ToList();
+            return repo.GetAllCars().Where(c => c.Plate.StartsWith("DT")).ToList();
+        }
+
+        public ICollection<Car> FilterByBrand(string brand)
+        {
+            return repo.GetAllCars().Where(c => c.Car_brand.Equals(brand)).ToList();
         }
     }
 }
