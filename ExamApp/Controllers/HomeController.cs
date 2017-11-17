@@ -25,5 +25,17 @@ namespace ExamApp.Controllers
         {
             return View();
         }
+
+        [Route("search/police=1")]
+        public IActionResult Police()
+        {
+            return View(carService.GetPoliceCars());
+        }
+
+        [Route("search/diplomat=1")]
+        public IActionResult Diplomat()
+        {
+            return View(carService.GetDiplomatCars());
+        }
     }
 }

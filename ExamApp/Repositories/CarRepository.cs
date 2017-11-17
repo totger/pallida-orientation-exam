@@ -15,6 +15,11 @@ namespace ExamApp.Repositories
             this.carContext = carContext;
         }
 
+        public ICollection<Car> GetAllCars()
+        {
+            return carContext.licence_plates.ToList();
+        }
+
         public ICollection<Car> GetByPlate(string plateNumber)
         {
             return carContext.licence_plates.Where(c => c.Plate.Contains(plateNumber)).ToList();
